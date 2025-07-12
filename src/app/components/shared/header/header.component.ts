@@ -14,7 +14,7 @@ import { CartService } from '../../../services/cart.service';
 })
 export class HeaderComponent {
   cart: any;
-  cartLength = computed(() => this.cartService.cart().length);;
+  cartLength = computed(() => this.cartService.cart().length);
 
 
   constructor(private cartService: CartService) {
