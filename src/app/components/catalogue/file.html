@@ -1,0 +1,28 @@
+<section class="container mx-auto py-8">
+  <h1 class="text-3xl font-bold mb-6 text-center">Product Catalogue</h1>
+  <div *ngIf="loading" class="flex justify-center">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div *ngFor="let product of products$ | async" class="bg-white shadow-md rounded-lg overflow-hidden">
+      <img
+        [src]="product.image"
+        [alt]="product.name"
+        class="w-full h-48 object-cover"
+        ngOptimizedImage
+      />
+      <div class="p-4">
+        <h2 class="text-lg font-semibold">{{ product.name }}</h2>
+        <p class="text-gray-600">{{ product.price | currency }}</p>
+        <a
+          [routerLink]="['/product', product.slug]"
+          class="mt-2 inline-block bg-primary text-white px-4 py-2 rounded hover:bg-blue-700"
+          role="button"
+          [attr.aria-label]="'View details for ' + product.name"
+        >
+          View Details
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

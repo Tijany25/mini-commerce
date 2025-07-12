@@ -1,0 +1,86 @@
+
+
+<div class="cart-container">
+  <div class="cart-content">
+    <div class="cart-items-section" [@fadeInUp]>
+      <div class="cart-header">
+        <h1 class="cart-title">Checkout</h1>
+      </div>
+
+      <div *ngIf="isEmpty()" class="empty-cart" [@bounceIn]>
+        <div class="empty-cart-icon">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </div>
+        <p class="empty-cart-text">Your cart is empty</p>
+      </div>
+
+      <div *ngIf="!isEmpty()" class="cart-items-list">
+        <div
+          *ngFor="let item of cart()"
+          class="cart-item"
+          >
+
+          <div class="item-image">
+            <img [src]="item.product.image" [alt]="item.product.name" />
+          </div>
+
+          <div class="item-details">
+            <h3 class="item-name">{{ item.product.name }}</h3>
+            <div class="item-price">
+              <span *ngIf="item.originalPrice" class="original-price">${{ item.product.originalPrice }}</span>
+              <span class="current-price">${{ item.product.price }}</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isEmpty()" class="order-summary" [@slideInRight]>
+      <div class="summary-content">
+        <h2 class="summary-title">Order Summary</h2>
+
+        <div class="summary-items">
+          <div *ngFor="let item of cart()" class="summary-line">
+            <span class="summary-label">{{ item.product.name }}</span>
+            <span class="summary-value">${{ item.product?.price * item.quantity | number: '1.2-2' }}</span>
+          </div>
+        </div>
+
+        <div class="summary-line tax-line">
+          <span class="summary-label">SALES TAX</span>
+          <span class="summary-value">included</span>
+        </div>
+
+        <div class="summary-total">
+          <span class="total-label">TOTAL</span>
+          <span class="total-value">${{ total() | number: '1.2-2' }}</span>
+        </div>
+
+         <button
+            mat-raised-button
+            (click)="placeOrder()"
+            aria-label="Place order"
+           class="checkout-btn"
+          [@bounceIn]>
+            Place Order
+          </button>
+
+        <button
+          class="cont-btn"
+          [@bounceIn]>
+          <a
+            routerLink="/"
+            aria-label="Proceed to checkout"
+          >
+            Continue Shopping
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

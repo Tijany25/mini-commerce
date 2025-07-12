@@ -1,0 +1,11 @@
+<mat-toolbar color="">
+  <div class="container mx-auto flex justify-between items-center">
+    <a routerLink="/" class="text-2xl font-bold">Mini-Commerce</a>
+    <nav>
+      <a routerLink="/" mat-button aria-label="Home">Home</a>
+      <a routerLink="/cart" mat-button aria-label="Cart">
+        Cart ({{ cartLength() || 0 }})
+      </a>
+    </nav>
+  </div>
+</mat-toolbar>

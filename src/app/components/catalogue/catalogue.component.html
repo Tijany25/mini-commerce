@@ -1,0 +1,141 @@
+
+<div class="product-store ">
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title transition-opacity duration-300 opacity-0 animate-fade-in">Shop the Best, All in One Place</h1>
+      <p class="hero-subtitle transition-opacity duration-300 opacity-0 animate-fade-in">
+       Everything you need — electronics, clothing, accessories, and more.<br>
+  Curated collections, bestsellers, and new arrivals updated daily.<br>
+      </p>
+    </div>
+
+  </section>
+ <section class="search-section">
+  <div class="search-container">
+    <div class="search-bar">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search products..."
+          [value]="currentSearchQuery"
+          (input)="onSearchChange($event)"
+          (keyup.enter)="onSearchSubmit()"
+        />
+        <button
+          class="clear-btn"
+          *ngIf="currentSearchQuery"
+          (click)="clearSearch()"
+          type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <button class="search-btn" (click)="onSearchSubmit()">
+        Search
+      </button>
+    </div>
+  </div>
+
+  <div class="search-results" *ngIf="currentSearchQuery">
+    <div class="results-info">
+      <span class="results-count">{{ (filteredProducts$ | async)?.length || 0 }} PRODUCTS FOUND</span>
+      <span class="search-term" *ngIf="currentSearchQuery">
+        for "{{ currentSearchQuery }}"
+      </span>
+    </div>
+  </div>
+</section>
+
+
+  <section class="products-grid">
+    <div class="product-card" *ngFor="let product of  filteredProducts$ | async"
+         [class.has-badge]="product.badge">
+
+      <div class="badge" *ngIf="product.badge"
+           [class.bestseller]="product.badge === 'BESTSELLER'"
+           [class.new]="product.badge === 'NEW'">
+        {{ product.badge }}
+      </div>
+
+      <div class="product-image">
+        <img [src]="product.image" [alt]="product.name" />
+
+
+      </div>
+
+      <div class="product-info">
+        <div class="product-header">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <button class="like-btn"
+                  [class.liked]="product.isLiked"
+                  (click)="toggleLike(product)">
+            <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="product-price" *ngIf="product.price > 0">
+           ${{ product.price }}
+        </div>
+
+        <div class="product-rating" *ngIf="product.rating > 0">
+          <div class="stars">
+            <span class="star"
+                  *ngFor="let filled of getStars(product.rating); let i = index"
+                  [class.filled]="filled">
+              ★
+            </span>
+          </div>
+          <span class="review-count">({{ product.reviewCount }})</span>
+        </div>
+
+         <div class="product-rating no-rating" *ngIf="product.rating === 0">
+          <div class="stars">
+            <span class="star" *ngFor="let star of [1,2,3,4,5]">☆</span>
+          </div>
+          <span class="review-count">({{ product.reviewCount }})</span>
+        </div>
+
+         <div class="hover-actions">
+          <button class="action-btn primary" (click)="addToCart(product)">
+            Add to Cart
+          </button>
+          <button class="action-btn secondary" (click)="viewDetails(product)">
+           <a
+          [routerLink]="['/product', product.slug]"
+          role="button"
+          [attr.aria-label]="'View details for ' + product.name"
+        >
+          View Details
+        </a>
+          </button>
+        </div>
+
+
+
+
+      </div>
+    </div>
+    <div class="no-results" *ngIf="(filteredProducts$ | async)?.length === 0 && currentSearchQuery">
+    <div class="no-results-content">
+      <div class="empty-cart-icon">
+      <svg class="no-results-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      </div>
+      <h3>No products found</h3>
+      <p>Try searching for different keywords or <button class="link-btn" (click)="clearSearch()">clear your search</button></p>
+    </div>
+  </div>
+  </section>
+</div>

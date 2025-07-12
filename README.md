@@ -18,10 +18,39 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+# Mini-Commerce
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+A client-side Angular 17 e-commerce prototype with a modern, mobile-first design. Features a product catalogue, product details, cart management, and mock checkout with localStorage persistence.
 
-## Further help
+## Live Demo
+Hosted on Vercel: [https://mini-commerce.vercel.app](#)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Design Approach
+- **Layout**: Mobile-first, responsive grid using Tailwind CSS with custom primary/secondary colors.
+- **Colors**: Blue (`#2563eb`) for primary actions, dark gray (`#1f2937`) for contrast, light gray background.
+- **Responsiveness**: Flex/grid layouts adapt from 1-column (mobile) to 4-column (desktop).
+- **Accessibility**: Semantic HTML, ARIA labels, keyboard-navigable buttons, alt text for images.
+
+## Tools & Techniques
+- **Stack**: Angular 17, TypeScript (strict), RxJS, Tailwind CSS, NgRx Store, Angular Material.
+- **State Management**: NgRx Store for products and cart, with localStorage persistence.
+- **Data Fetching**: HttpClient for loading products from `products.json`, cached in localStorage.
+- **Testing**: Jest unit test for CatalogueComponent.
+- **CI**: Vercel auto-deploys on push to GitHub.
+
+## SEO Strategy
+- **Meta Tags**: Dynamic title and description per route, Open Graph tags for product pages.
+- **Performance**: Lazy-loaded images with `ngOptimizedImage`, minimal CSS/JS bundles.
+- **Structured Data**: JSON-LD for products (added in `ProductDetailComponent`).
+
+## Error Handling
+- **Global**: NgRx effects catch HTTP errors, display via MatSnackBar.
+- **UI Feedback**: Loading spinners and error messages in CatalogueComponent.
+- **Recovery**: Fallback to localStorage cache if HTTP fails.
+
+## Setup
+1. Clone: `git clone https://github.com/username/mini-commerce.git`
+2. Install: `npm install`
+3. Run: `ng serve`
+4. Test: `ng test`
+5. Build: `ng build`

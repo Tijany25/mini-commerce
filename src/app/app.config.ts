@@ -1,15 +1,14 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { AppComponent } from './app/app.component';
-import { routes } from './app/app-routing.module';
-import { importProvidersFrom } from '@angular/core';
+import { routes } from './app-routing.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { importProvidersFrom } from '@angular/core';
 
-bootstrapApplication(AppComponent, {
+export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
@@ -18,4 +17,4 @@ bootstrapApplication(AppComponent, {
     provideEffects(),
     importProvidersFrom(MatSnackBarModule)
   ]
-}).catch(err => console.error(err));
+};
