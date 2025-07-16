@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
 
+A client-side Angular 17 e-commerce prototype with a modern, mobile-first design. Features a product catalogue, product details, cart management, and mock checkout with localStorage persistence.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -18,16 +21,13 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-# Mini-Commerce
-
 A client-side Angular 17 e-commerce prototype with a modern, mobile-first design. Features a product catalogue, product details, cart management, and mock checkout with localStorage persistence.
 
 ## Live Demo
-Hosted on Vercel: [https://mini-commerce.vercel.app](#)
+Hosted on Github page: (https://tijany25.github.io/mini-commerce/)(#)
 
 ## Design Approach
 - **Layout**: Mobile-first, responsive grid using Tailwind CSS with custom primary/secondary colors.
-- **Colors**: Blue (`#2563eb`) for primary actions, dark gray (`#1f2937`) for contrast, light gray background.
 - **Responsiveness**: Flex/grid layouts adapt from 1-column (mobile) to 4-column (desktop).
 - **Accessibility**: Semantic HTML, ARIA labels, keyboard-navigable buttons, alt text for images.
 
@@ -49,7 +49,7 @@ Hosted on Vercel: [https://mini-commerce.vercel.app](#)
 - **Recovery**: Fallback to localStorage cache if HTTP fails.
 
 ## Setup
-1. Clone: `git clone https://github.com/username/mini-commerce.git`
+1. Clone: `git clone https://github.com/Tijany25/mini-commerce.git`
 2. Install: `npm install`
 3. Run: `ng serve`
 4. Test: `ng test`
